@@ -1,0 +1,7 @@
+/* src/index.css */
+
+:root {
+  --primary-color: #6e870b; /* Button and overlay color */
+  --secondary-color: #93ad19; /* Button hover color */
+  --background-color: #ffffff; /* Modal background color */
+}
