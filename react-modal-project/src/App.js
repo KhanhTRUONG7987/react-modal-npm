@@ -1,20 +1,29 @@
+// App.js
 import React from 'react';
-import { ModalManager } from './components/ModalManager';
-import { Overlay } from './components/Overlay';
+import { ModalProvider } from './components/ModalContext'; 
+import ModalManager from './components/ModalManager';
+import ModalTrigger from './components/ModalTrigger';
+import './css/ModalManager.css';
+import './css/Modal.css';
+import './css/Overlay.css';
+import './css/ModalTrigger.css';
 
 function App() {
-  const modals = [
-    { content: "Modal 1 Content" },
-    { content: "Modal 2 Content" },
-    // ... 
-  ];
-
   return (
-    <div className="App">
-      <h1>React Modal Demo</h1>
-      <ModalManager modals={modals} />
-      <Overlay isOpen={false} />
-    </div>
+    <ModalProvider> 
+      <div className="App">
+        <h1>React Modal Demo</h1>
+        <ModalManager />
+        <ModalTrigger 
+          content={
+            <div>
+              <h2>Modal Content 1</h2>
+              <ModalTrigger content={<h2>Modal Content 2</h2>} />
+            </div>
+          } 
+        />
+      </div>
+    </ModalProvider>
   );
 }
 

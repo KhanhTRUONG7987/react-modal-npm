@@ -1,21 +1,43 @@
-/* src/css/Modal.css */
-@import '../index.css';
+/* Modal.css */
+@import "../index.css";
+
 .modal {
-    background-color: var(--background-color);
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--primary-color);
-  }
-  
-  .close:hover {
-    color: var(--secondary-color);
-  }
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+  height: 100px;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  max-width: 50vh;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  margin: 0 auto;
+}
+
+.modal-inner {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.close-button:hover {
+  color: var(--secondary-color);
+}
+
+.modal.active {
+  top: 5em;
+  z-index: 1000; /* Adjust the z-index to make the active modal prominent */
+  width: 400px; /* Adjust the width to make the active modal larger */
+  height: 200px; /* Adjust the height to make the active modal larger */
+}

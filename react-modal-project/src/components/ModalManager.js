@@ -1,26 +1,27 @@
-// src/components/ModalManager.js
+// react-modal-project/src/components/ModalManager.js
 
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React from 'react';
+import { useModal } from './ModalContext';
+import '../css/ModalManager.css';
+import '../css/Modal.css';
+import '../css/Overlay.css';
 
-const ModalManager = ({ modals }) => {
-  const [openModals, setOpenModals] = useState([]);
-
-  const closeModal = (index) => {
-    const updatedModals = [...openModals];
-    updatedModals.splice(index, 1);
-    setOpenModals(updatedModals);
-  };
+const ModalManager = () => {
+  const { modals, closeModal } = useModal();
+  const isLastModalActive = modals.length > 0 && modals[modals.length - 1].isActive;
 
   return (
-    <div>
+    <div className={`modal-manager ${isLastModalActive ? 'overlay-active' : ''}`}>
       {modals.map((modal, index) => (
-        <Modal
-          key={index}
-          isOpen={true} 
-          onClose={() => closeModal(index)}
-          content={modal.content}
-        />
+        <React.Fragment key={modal.id}>
+          {index < modals.length - 1 && ( // Apply overlay to all modals except the last one
+            <div className="overlay" onClick={() => closeModal(modal.id)}></div>
+          )}
+          <div className={`modal ${modal.isActive ? 'active' : ''}`}>
+            {modal.content}
+            <button className="close-button" onClick={() => closeModal(modal.id)}>X</button>
+          </div>
+        </React.Fragment>
       ))}
     </div>
   );

@@ -1,19 +1,22 @@
-/* src/css/Overlay.css */
+/* Overlay.css */
 @import '../index.css';
+
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(var(--primary-color), 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
-  
-  .overlay.open {
-    opacity: 1;
-    visibility: visible;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 999; /* Ensure the overlay is above other content */
+  display: none; /* Initially hide the overlay */
+}
+
+.overlay.active {
+  display: block; /* Show the overlay when active */
+}
+
+.modal-manager.overlay-active .modal:not(:last-child),
+.modal-manager.overlay-active .App > *:not(.modal-manager):not(.overlay) {
+  background-color: rgba(0, 0, 0, 0.5); /* Darkened background color */
+}
