@@ -1,10 +1,9 @@
-// react-modal-project/src/components/ModalManager.js
+import React from 'react'; 
+import { useModal } from '../ModalContext/ModalContext';
+import '../ModalManager/ModalManager.css';
+import '../Modal/Modal.css';
+import '../Overlay/Overlay.css';
 
-import React from 'react';
-import { useModal } from './ModalContext';
-import '../css/ModalManager.css';
-import '../css/Modal.css';
-import '../css/Overlay.css';
 
 const ModalManager = () => {
   const { modals, closeModal } = useModal();

@@ -1,7 +1,12 @@
 {
-  "name": "react-modal-project",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-custom-modal",
+  "version": "1.0.0",
+  "description": "React library for modals",
+  
+  "license": "MIT",
+  "private": false,
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -13,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +39,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "css-loader": "^6.10.0",
+    "style-loader": "^3.3.4",
+    "webpack-cli": "^5.1.4"
+  },
+  "files": [
+    "dist"
+  ]
 }

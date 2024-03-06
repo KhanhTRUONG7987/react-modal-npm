@@ -1,9 +1,9 @@
-// react-modal-project/src/components/Modal.js
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useModal } from './ModalContext';
-import '../css/Modal.css';
+import { useModal } from '../ModalContext/ModalContext';
+import './Modal.css'; 
+
+
 
 const Modal = ({ id, content, className }) => {
   const { closeModal, isModalOpen } = useModal();

@@ -1,12 +1,11 @@
-// App.js
 import React from 'react';
-import { ModalProvider } from './components/ModalContext'; 
-import ModalManager from './components/ModalManager';
-import ModalTrigger from './components/ModalTrigger';
-import './css/ModalManager.css';
-import './css/Modal.css';
-import './css/Overlay.css';
-import './css/ModalTrigger.css';
+import { ModalProvider } from './lib/ModalContext/ModalContext';
+import ModalManager from './lib/ModalManager/ModalManager';
+import ModalTrigger from './lib/ModalTrigger/ModalTrigger';
+import './lib/ModalManager/ModalManager.css';
+import './lib/Modal/Modal.css'; 
+import './lib/Overlay/Overlay.css';
+import './lib/ModalTrigger/ModalTrigger.css';
 
 function App() {
   return (

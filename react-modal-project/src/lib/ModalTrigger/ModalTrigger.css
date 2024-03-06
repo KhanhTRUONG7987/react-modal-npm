@@ -1,0 +1,16 @@
+@import "../index.css";
+
+.button {
+    background-color: #6e870b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .button:last-child {
+    margin-right: 0;
+  }
+  

@@ -1,8 +1,8 @@
-// react-modal-project/src/components/ModalTrigger.js
 import React from 'react';
-import { useModal } from './ModalContext';
-import '../css/Modal.css';
-import '../css/ModalTrigger.css';
+import { useModal } from '../ModalContext/ModalContext';
+import '../Modal/Modal.css';
+import './ModalTrigger.css';
+
 
 const ModalTrigger = ({ content }) => {
   const { openModal, modals } = useModal();

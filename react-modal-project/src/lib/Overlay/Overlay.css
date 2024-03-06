@@ -1,5 +1,4 @@
-/* Overlay.css */
-@import '../index.css';
+@import "../index.css";
 
 .overlay {
   position: fixed;
