@@ -1,12 +1,10 @@
-@import "../index.css";
-
 .modal {
-  background-color: var(--background-color);
+  background-color: #ebf4c4;
   padding: 20px;
   border-radius: 8px;
   width: 200px;
   height: 100px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid #6e870b;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   position: relative;
@@ -27,11 +25,11 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: var(--primary-color);
+  color: #6e870b;
 }
 
 .close-button:hover {
-  color: var(--secondary-color);
+  color: #93ad19;
 }
 
 .modal.active {

@@ -1,8 +1,9 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from '../App'; 
-import'./index.css';
+// Import all components
+import Modal from './Modal/Modal';
+import { ModalProvider, useModal } from './ModalContext/ModalContext';
+import ModalManager from './ModalManager/ModalManager';
+import ModalTrigger from './ModalTrigger/ModalTrigger';
+import Overlay from './Overlay/Overlay';
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
-root.render(<App />);
+// Export all components
+export { ModalProvider, useModal, Modal, ModalManager, ModalTrigger, Overlay };
