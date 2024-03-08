@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# React Modal Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the React Modal Project! This project provides a simple and customizable modal component for React applications.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+You can install the React Modal Project via npm:
 
-### `npm start`
+```bash
+npm install react-modal-kt
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ou
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+yarn add react-modal-kt
+```
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To use the project, follow these steps:
 
-### `npm run build`
+Import the module:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+import Modal from 'react-modal-kt';
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Render the Modal component in your JSX:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+<Modal 
+  isOpen={true} 
+  onClose={handleClose} 
+  title="Modal Title"
+  closeText="Close"
+  closeClass="custom-close-class"
+  closeExisting={true}
+  escapeClose={true}
+  clickClose={true}
+  modalClass="custom-modal"
+  fadeDuration={300}
+  fadeDelay={0.5}
+>
+  {/* Modal Content Goes Here */}
+</Modal>
+```
 
-### `npm run eject`
+## Props
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The Modal component accepts the following props:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+|              Props | Description                                                                                                   |
+| -----------------: | ------------------------------------------------------------------------------------------------------------- |
+|           isOpen (boolean, required) | Controls whether the modal is open or closed.                              |
+|              onClose (function, required) | Callback function to handle modal closing.                                                 |
+|           title (string)| Title of the modal.                               |
+|               closeText (string) | Text for the close button.            |
+|           closeClass (string) | Additional CSS class for the close button.                                   |
+|         closeExisting (boolean) | Option to close existing modals when opening a new one.|
+|      escapeClose (boolean) | Option to close modal when pressing the escape key.           |
+| clickClose (boolean) | Option to close modal when clicking outside.  |
+|           modalClass (string) | Additional CSS class for styling the modal. |
+|               fadeDuration (number)| Duration of the fade animation.|
+|            fadeDelay (number) | Delay for the modal fade-in animation.     |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Examples
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+import React, { useEffect } from "react";
+import ModalTrigger from "./lib/ModalTrigger/ModalTrigger";
+import { useModal } from "./lib/ModalContext/ModalContext";
+import "./lib/ModalManager/ModalManager.css";
+import "./lib/Modal/Modal.css";
+import "./lib/Overlay/Overlay.css";
+import "./lib/ModalTrigger/ModalTrigger.css";
 
-## Learn More
+function App() {
+  const { closeModal } = useModal(); 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  const closeModalOnEscape = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.key === "Escape") {
+      closeModal(); 
+    }
+  };
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  useEffect(() => {
+    document.addEventListener("keyup", closeModalOnEscape);
 
-### Code Splitting
+    return () => {
+      document.removeEventListener("keyup", closeModalOnEscape);
+    };
+  }, []);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  return (
+    <div className="App">
+      <h1>React Modal Demo</h1>
+      <ModalTrigger
+        closeText="test close" // Option to customize close text
+        closeClass="custom-close-class" // Option to customize close button CSS class
+        closeExisting={true} // Option to close existing modals when opening a new one
+        escapeClose={true} // Option to close modal when pressing escape key
+        clickClose={true} // Option to close modal when clicking outside
+        modalClass="custom-modal" // Option to customize modal CSS class
+        fadeDuration={300} // Option to set fade animation duration
+        fadeDelay={0.5} // Option to set delay for modal fade-in animation
+        content={
+          <div>
+            <h2>Modal Content 1</h2>
+            <ModalTrigger content={<h2>Modal Content 2</h2>} />
+          </div>
+        }
+      />
+    </div>
+  );
+}
 
-### Analyzing the Bundle Size
+export default App; 
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Customisation
 
-### Making a Progressive Web App
+You can customize the appearance and behavior of the modal by providing custom CSS classes or styles. Additionally, you can modify the Modal component to add more features or functionality as needed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
