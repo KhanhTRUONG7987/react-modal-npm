@@ -8,7 +8,7 @@ const Modal = ({ id, open, onClose, content }) => {
 
   useEffect(() => {
     if (open) {
-      openModal(content, "test close " + id, true, id);
+      openModal(content, "test close " + id);
     }
   }, [open]);
 
