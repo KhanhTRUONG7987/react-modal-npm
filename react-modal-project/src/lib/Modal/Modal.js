@@ -1,3 +1,4 @@
+// Modal.js
 import React, { useEffect } from "react";
 import { useModal } from "../ModalContext/ModalContext";
 import PropTypes from "prop-types";
@@ -11,20 +12,6 @@ const Modal = ({ id, open, onClose, content }) => {
       openModal(content, "test close " + id);
     }
   }, [open]);
-
-  useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.key === "Escape") {
-        closeModal(id);
-      }
-    };
-
-    document.addEventListener("keydown", handleEsc);
-
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-    };
-  }, [id, closeModal]);
 
   return null;
 };
