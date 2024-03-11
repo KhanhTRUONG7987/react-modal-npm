@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Overlay.css';
-import '../Modal/Modal.css';
-
 
 const Overlay = ({ isOpen, onClose }) => {
   return (
-    <div className={`overlay ${isOpen ? 'open' : ''}`} onClick={onClose}></div>
+    <div className={`overlay ${isOpen ? 'active' : ''}`} onClick={onClose}></div>
   );
+};
+
+Overlay.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Overlay;

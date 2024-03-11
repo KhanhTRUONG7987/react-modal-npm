@@ -1,47 +1,56 @@
-// App.js
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import ModalTrigger from "./lib/ModalTrigger/ModalTrigger";
-import { useModal } from "./lib/ModalContext/ModalContext";
-import "./lib/ModalManager/ModalManager.css";
-import "./lib/Modal/Modal.css";
-import "./lib/Overlay/Overlay.css";
-import "./lib/ModalTrigger/ModalTrigger.css";
+import Modal from "./lib/Modal/Modal";
 
 function App() {
-  const { closeModal } = useModal(); 
-
-  const closeModalOnEscape = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.key === "Escape") {
-      closeModal(); 
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keyup", closeModalOnEscape);
-
-    return () => {
-      document.removeEventListener("keyup", closeModalOnEscape);
-    };
-  }, []);
+  const [modalOpen1, setModalOpen1] = useState(true);
+  const [modalOpen2, setModalOpen2] = useState(true);
 
   return (
     <div className="App">
       <h1>React Modal Demo</h1>
+
+      <Modal
+        id="testModal1"
+        open={modalOpen1}
+        onClose={() => {
+          setModalOpen1(false);
+        }}
+        content={<div>TEST1</div>}
+      />
+
+      <Modal
+        id="textModal2"
+        open={modalOpen2}
+        onClose={() => {
+          setModalOpen2(false);
+        }}
+        content={
+          <div style={{ background: "red", width: 200 }}>
+            <ModalTrigger
+              escapeClose={false}
+              content={<h2>Modal Content 2</h2>}
+            />
+          </div>
+        }
+      />
+
       <ModalTrigger
-        closeText="test close" // Option to customize close text
-        closeClass="custom-close-class" // Option to customize close button CSS class
-        closeExisting={true} // Option to close existing modals when opening a new one
-        escapeClose={true} // Option to close modal when pressing escape key
-        clickClose={true} // Option to close modal when clicking outside
-        modalClass="custom-modal" // Option to customize modal CSS class
-        fadeDuration={300} // Option to set fade animation duration
-        fadeDelay={0.5} // Option to set delay for modal fade-in animation
+        closeText="test close"
+        closeClass="custom-close-class"
+        closeExisting={true}
+        escapeClose={true}
+        clickClose={true}
+        modalClass="custom-modal"
+        fadeDuration={300}
+        fadeDelay={0.5}
         content={
           <div>
             <h2>Modal Content 1</h2>
-            <ModalTrigger content={<h2>Modal Content 2</h2>} />
+            <ModalTrigger
+              escapeClose={false}
+              content={<h2>Modal Content 2</h2>}
+            />
           </div>
         }
       />

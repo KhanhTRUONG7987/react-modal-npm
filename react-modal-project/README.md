@@ -7,13 +7,13 @@ Welcome to the React Modal Project! This project provides a simple and customiza
 You can install the React Modal Project via npm:
 
 ```bash
-npm install react-modal-kt
+npm install react-modal-at
 ```
 
 ou
 
 ```bash
-yarn add react-modal-kt
+yarn add react-modal-at
 ```
 
 ## Usage
@@ -23,27 +23,7 @@ To use the project, follow these steps:
 Import the module:
 
 ```bash
-import Modal from 'react-modal-kt';
-```
-
-Render the Modal component in your JSX:
-
-```bash
-<Modal 
-  isOpen={true} 
-  onClose={handleClose} 
-  title="Modal Title"
-  closeText="Close"
-  closeClass="custom-close-class"
-  closeExisting={true}
-  escapeClose={true}
-  clickClose={true}
-  modalClass="custom-modal"
-  fadeDuration={300}
-  fadeDelay={0.5}
->
-  {/* Modal Content Goes Here */}
-</Modal>
+import Modal from 'react-modal-at';
 ```
 
 ## Props
@@ -68,32 +48,11 @@ The Modal component accepts the following props:
 
 ```bash
 import React, { useEffect } from "react";
-import ModalTrigger from "./lib/ModalTrigger/ModalTrigger";
-import { useModal } from "./lib/ModalContext/ModalContext";
-import "./lib/ModalManager/ModalManager.css";
-import "./lib/Modal/Modal.css";
-import "./lib/Overlay/Overlay.css";
-import "./lib/ModalTrigger/ModalTrigger.css";
+import ModalTrigger from 'react-modal-at/dist/lib/ModalTrigger/ModalTrigger.js';
+import { useModal } from 'react-modal-at/dist/lib/ModalContext/ModalContext.js';
+import 'react-modal-at/dist/lib/ModalTrigger/ModalTrigger.css';
 
 function App() {
-  const { closeModal } = useModal(); 
-
-  const closeModalOnEscape = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.key === "Escape") {
-      closeModal(); 
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keyup", closeModalOnEscape);
-
-    return () => {
-      document.removeEventListener("keyup", closeModalOnEscape);
-    };
-  }, []);
-
   return (
     <div className="App">
       <h1>React Modal Demo</h1>
@@ -109,7 +68,10 @@ function App() {
         content={
           <div>
             <h2>Modal Content 1</h2>
-            <ModalTrigger content={<h2>Modal Content 2</h2>} />
+            <ModalTrigger
+              escapeClose={false}
+              content={<h2>Modal Content 2</h2>}
+            />
           </div>
         }
       />
@@ -117,7 +79,7 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
 ```
 
 ## Customisation
@@ -126,4 +88,4 @@ You can customize the appearance and behavior of the modal by providing custom C
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+This project is licensed under the MIT License - see the [LICENSE] file for details.

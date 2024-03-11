@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    library: 'npmReactModal',
+    library: 'react-modal-at',
     libraryTarget: 'umd',
     globalObject: 'this',
   },

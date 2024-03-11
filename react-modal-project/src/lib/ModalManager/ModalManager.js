@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useModal } from "../ModalContext/ModalContext";
-import "../ModalManager/ModalManager.css";
-import "../Modal/Modal.css";
-import "../Overlay/Overlay.css";
+import "./ModalManager.css"; 
+import "../Modal/Modal.css"; 
+import "../Overlay/Overlay.css"; 
 
 const ModalManager = () => {
   const { modals, closeModal } = useModal();
@@ -11,13 +11,30 @@ const ModalManager = () => {
 
   const isModalOpen = modals.length > 0;
 
+  useEffect(() => {
+    const handleEscapeClose = (event) => {
+      if (event.key === "Escape") {
+        const lastModal = modals[modals.length - 1];
+        if (lastModal && lastModal.escapeClose) {
+          closeModal(lastModal.id);
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  }, [modals, closeModal]);
+
   return (
     <div
       className={`modal-manager ${isModalOpen ? "visible" : ""} ${
         isLastModalActive ? "overlay-active" : ""
       }`}
     >
-      {modals.map((modal, index) => (
+      {modals.map((modal) => (
         <div
           className="modal-overlay"
           key={modal.id}

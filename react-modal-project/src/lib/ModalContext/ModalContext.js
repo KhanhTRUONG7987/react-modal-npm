@@ -1,28 +1,86 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import ModalManager from "../ModalManager/ModalManager";
 
 const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
-  const [modals, setModals] = useState([]);
+  const [modals, _setModals] = useState([]);
+  const modalsRef = useRef(modals);
+  const setModals = (data) => {
+    modalsRef.current = data;
+    _setModals(data);
+  };
 
-  const openModal = (content, closeText) => {
-    setModals((prevModals) => [
-      ...prevModals,
-      { id: Date.now(), content, closeText },
-    ]);
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keyup", handleKeyDown);
+    };
+  }, []);
+
+  const handleKeyDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (modalsRef.current.length < 1) {
+      return;
+    }
+    if (event.key === "Escape") {
+      const lastModal = modalsRef.current[modalsRef.current.length - 1];
+      if (lastModal && lastModal.escapeClose) {
+        closeModal(lastModal.id);
+      }
+    }
+  };
+
+  const openModal = (
+    content,
+    closeText = "Close",
+    options = {}
+  ) => {
+    const defaultOptions = {
+      closeExisting: true,
+      escapeClose: true,
+      clickClose: true,
+      closeClass: "",
+      modalClass: "modal",
+      showClose: true,
+      fadeDuration: null,
+      fadeDelay: 1.0,
+    };
+
+    const modal = {
+      id: Date.now(),
+      content,
+      closeText,
+      ...defaultOptions,
+      ...options,
+    };
+    setModals([...modalsRef.current, modal]);
   };
 
   const closeModal = (id) => {
-    setModals((prevModals) => prevModals.filter((modal) => modal.id !== id));
+    setModals(modalsRef.current.filter((modal) => modal.id !== id));
+  };
+
+  const closeAllModals = () => {
+    setModals([]);
   };
 
   const isModalOpen = () => {
-    return modals.length > 0;
+    return modalsRef.current.length > 0;
+  };
+
+  const value = {
+    modals: modalsRef.current,
+    openModal,
+    closeModal,
+    closeAllModals,
+    isModalOpen,
+    setModals,
   };
 
   return (
-    <ModalContext.Provider value={{ modals, openModal, closeModal, isModalOpen }}>
+    <ModalContext.Provider value={value}>
       <ModalManager />
       {children}
     </ModalContext.Provider>

@@ -1,5 +1,11 @@
-/* src/index.css */
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
+/* Additional global styles */
 :root {
   --overlay-color: #1b2102d2;
   --primary-color: #6e870b; /* Button and overlay color */
