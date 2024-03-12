@@ -31,6 +31,7 @@ function App() {
             <ModalTrigger
               escapeClose={false}
               content={<h2>Modal Content 2</h2>}
+              buttonText="Open" 
             />
           </div>
         }
