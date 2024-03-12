@@ -17,6 +17,7 @@ function App() {
           setModalOpen1(false);
         }}
         content={<div>TEST1</div>}
+        escapeClose={true}
       />
 
       <Modal

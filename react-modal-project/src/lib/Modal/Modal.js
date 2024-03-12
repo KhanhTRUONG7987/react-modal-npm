@@ -1,4 +1,3 @@
-// Modal.js
 import React, { useEffect } from "react";
 import { useModal } from "../ModalContext/ModalContext";
 import PropTypes from "prop-types";
@@ -10,6 +9,8 @@ const Modal = ({ id, open, onClose, content }) => {
   useEffect(() => {
     if (open) {
       openModal(content, "test close " + id);
+    } else {
+      closeModal(id);
     }
   }, [open]);
 
