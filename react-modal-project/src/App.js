@@ -37,6 +37,7 @@ function App() {
       />
 
       <ModalTrigger
+        buttonText="Open" 
         closeText="test close"
         closeClass="custom-close-class"
         closeExisting={true}

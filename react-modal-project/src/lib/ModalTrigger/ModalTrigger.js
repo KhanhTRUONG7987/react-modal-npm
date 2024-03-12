@@ -3,7 +3,7 @@ import { useModal } from "../ModalContext/ModalContext";
 import PropTypes from "prop-types"; 
 import "./ModalTrigger.css";
 
-const ModalTrigger = ({ content, closeText }) => {
+const ModalTrigger = ({ content, buttonText, closeText }) => {
   const { openModal, closeAllModals } = useModal();
 
   const handleOpenModal = (e) => {
@@ -17,13 +17,14 @@ const ModalTrigger = ({ content, closeText }) => {
 
   return (
     <button className="button" onClick={handleOpenModal}>
-      Open Modal
+      {buttonText}
     </button>
   );
 };
 
 ModalTrigger.propTypes = {
   content: PropTypes.node.isRequired,
+  buttonText: PropTypes.string.isRequired, 
   closeText: PropTypes.string,
 };
 
