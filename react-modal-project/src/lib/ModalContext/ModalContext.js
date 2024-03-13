@@ -12,26 +12,25 @@ export const ModalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (modalsRef.current.length < 1) {
-        return;
-      }
-      if (event.key === "Escape") {
-        const lastModal = modalsRef.current[modalsRef.current.length - 1];
-        if (lastModal && lastModal.escapeClose) {
-          closeModal(lastModal.id);
-        }
-      }
-    };
-
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyDown);
     };
   }, []);
+
+  const handleKeyDown = (event) => {
+    if (modalsRef.current.length < 1) {
+      return;
+    }
+    if (event.key === "Escape") {
+      const lastModal = modalsRef.current[modalsRef.current.length - 1];
+      if (lastModal && lastModal.escapeClose) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeModal(lastModal.id);
+      }
+    }
+  };
 
   const openModal = (
     content,
