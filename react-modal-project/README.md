@@ -7,13 +7,13 @@ Welcome to the React Modal Project! This project provides a simple and customiza
 You can install the React Modal Project via npm:
 
 ```bash
-npm install react-modal-dkt
+npm install react-modal-dkt2
 ```
 
 ou
 
 ```bash
-yarn add react-modal-dkt
+yarn add react-modal-dkt2
 ```
 
 ## Usage
@@ -23,10 +23,10 @@ To use the project, follow these steps:
 Import the module:
 
 ```bash
-import Modal from 'react-modal-dkt';
-import ModalTrigger from 'react-modal-dkt/dist/lib/ModalTrigger/ModalTrigger.js';
-import { useModal } from 'react-modal-dkt/dist/lib/ModalContext/ModalContext.js';
-import 'react-modal-dkt/dist/lib/ModalTrigger/ModalTrigger.css';
+import Modal from 'react-modal-dkt2';
+import ModalTrigger from 'react-modal-dkt2/dist/lib/ModalTrigger/ModalTrigger.js';
+import { useModal } from 'react-modal-dkt2/dist/lib/ModalContext/ModalContext.js';
+import 'react-modal-dkt2/dist/lib/ModalTrigger/ModalTrigger.css';
 
 ```
 
@@ -52,44 +52,36 @@ The Modal component accepts the following props:
 
 ```bash
 import React, { useEffect } from "react";
-import ModalTrigger from 'react-modal-dkt/dist/lib/ModalTrigger/ModalTrigger.js';
-import { useModal } from 'react-modal-dkt/dist/lib/ModalContext/ModalContext.js';
-import 'react-modal-dkt/dist/lib/ModalTrigger/ModalTrigger.css';
+import ModalTrigger from 'react-modal-dkt2/dist/lib/ModalTrigger/ModalTrigger.js';
+import { useModal } from 'react-modal-dkt2/dist/lib/ModalContext/ModalContext.js';
+import 'react-modal-dkt2/dist/lib/ModalTrigger/ModalTrigger.css';
 
 function App() {
   const [modalOpen1, setModalOpen1] = useState(true);
-  const [modalOpen2, setModalOpen2] = useState(true);
 
   return (
     <div className="App">
       <h1>React Modal Demo</h1>
 
       <Modal
-        id="testModal1"
+        id="textModal1"
         open={modalOpen1}
         onClose={() => {
           setModalOpen1(false);
-        }}
-        content={<div>TEST1</div>}
-      />
-
-      <Modal
-        id="textModal2"
-        open={modalOpen2}
-        onClose={() => {
-          setModalOpen2(false);
         }}
         content={
           <div style={{ background: "red", width: 200 }}>
             <ModalTrigger
               escapeClose={false}
               content={<h2>Modal Content 2</h2>}
+              buttonText="Open"
             />
           </div>
         }
       />
 
       <ModalTrigger
+        buttonText="Open"
         closeText="test close"
         closeClass="custom-close-class"
         closeExisting={true}
@@ -103,6 +95,7 @@ function App() {
             <h2>Modal Content 1</h2>
             <ModalTrigger
               escapeClose={false}
+              buttonText="Open"
               content={<h2>Modal Content 2</h2>}
             />
           </div>
