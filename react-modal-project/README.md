@@ -7,13 +7,13 @@ Welcome to the React Modal Project! This project provides a simple and customiza
 You can install the React Modal Project via npm:
 
 ```bash
-npm install react-modal-dktr
+npm install react-modal-dk2
 ```
 
 ou
 
 ```bash
-yarn add react-modal-dktr
+yarn add react-modal-dk2
 ```
 
 ## Usage
@@ -23,10 +23,10 @@ To use the project, follow these steps:
 Import the module:
 
 ```bash
-import Modal from 'react-modal-dktr';
-import ModalTrigger from 'react-modal-dktr/dist/lib/ModalTrigger/ModalTrigger.js';
-import { useModal } from 'react-modal-dktr/dist/lib/ModalContext/ModalContext.js';
-import 'react-modal-dktr/dist/lib/ModalTrigger/ModalTrigger.css';
+import Modal from 'react-modal-dk2;
+import ModalTrigger from 'react-modal-dk2/dist/lib/ModalTrigger/ModalTrigger.js';
+import { useModal } from 'react-modal-dk2/dist/lib/ModalContext/ModalContext.js';
+import 'react-modal-dk2/dist/lib/ModalTrigger/ModalTrigger.css';
 
 ```
 
@@ -52,9 +52,9 @@ The Modal component accepts the following props:
 
 ```bash
 import React, { useEffect } from "react";
-import ModalTrigger from 'react-modal-dktr/dist/lib/ModalTrigger/ModalTrigger.js';
-import { useModal } from 'react-modal-dktr/dist/lib/ModalContext/ModalContext.js';
-import 'react-modal-dktr/dist/lib/ModalTrigger/ModalTrigger.css';
+import ModalTrigger from 'react-modal-dk2/dist/lib/ModalTrigger/ModalTrigger.js';
+import { useModal } from 'react-modal-dk2/dist/lib/ModalContext/ModalContext.js';
+import 'react-modal-dk2/dist/lib/ModalTrigger/ModalTrigger.css';
 
 function App() {
   const [modalOpen1, setModalOpen1] = useState(true);
