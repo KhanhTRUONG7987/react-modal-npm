@@ -1,18 +1,18 @@
 import React from "react";
 import { useModal } from "../ModalContext/ModalContext";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import "./ModalTrigger.css";
 
-const ModalTrigger = ({ content, buttonText, closeText }) => {
+const ModalTrigger = ({ id, content, buttonText, closeText }) => {
   const { openModal, closeAllModals } = useModal();
 
   const handleOpenModal = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    closeAllModals(); 
+    //closeAllModals();
 
-    openModal(content, closeText);
+    openModal(content, closeText, id);
   };
 
   return (
@@ -24,7 +24,7 @@ const ModalTrigger = ({ content, buttonText, closeText }) => {
 
 ModalTrigger.propTypes = {
   content: PropTypes.node.isRequired,
-  buttonText: PropTypes.string.isRequired, 
+  buttonText: PropTypes.string.isRequired,
   closeText: PropTypes.string,
 };
 

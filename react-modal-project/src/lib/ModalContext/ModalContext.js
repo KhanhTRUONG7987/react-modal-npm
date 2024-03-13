@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import ModalManager from "../ModalManager/ModalManager";
 
 const ModalContext = createContext();
@@ -12,25 +18,30 @@ export const ModalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape" && modalsRef.current.length > 0) {
-        const lastModal = modalsRef.current[modalsRef.current.length - 1];
-        if (lastModal.escapeClose) {
-          closeModal(lastModal.id);
-        }
-      }
-    };
-
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyDown);
     };
   }, []);
+
+  const handleKeyDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (modalsRef.current.length < 1) {
+      return;
+    }
+    if (event.key === "Escape") {
+      const lastModal = modalsRef.current[modalsRef.current.length - 1];
+      if (lastModal && lastModal.escapeClose) {
+        closeModal(lastModal.id);
+      }
+    }
+  };
 
   const openModal = (
     content,
     closeText = "Close",
+    id = Date.now(),
     options = {}
   ) => {
     const defaultOptions = {
@@ -45,7 +56,7 @@ export const ModalProvider = ({ children }) => {
     };
 
     const modal = {
-      id: Date.now(),
+      id: id,
       content,
       closeText,
       ...defaultOptions,

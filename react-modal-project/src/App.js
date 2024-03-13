@@ -4,20 +4,32 @@ import Modal from "./lib/Modal/Modal";
 
 function App() {
   const [modalOpen1, setModalOpen1] = useState(true);
+  const [modalOpen2, setModalOpen2] = useState(true);
 
   return (
     <div className="App">
       <h1>React Modal Demo</h1>
 
       <Modal
-        id="textModal1"
+        id="testModal1"
         open={modalOpen1}
         onClose={() => {
           setModalOpen1(false);
         }}
+        content={<div>TEST1</div>}
+        escapeClose={true}
+      />
+
+      <Modal
+        id="testModal2"
+        open={modalOpen2}
+        onClose={() => {
+          setModalOpen2(false);
+        }}
         content={
           <div style={{ background: "red", width: 200 }}>
             <ModalTrigger
+              id="textModal3"
               escapeClose={false}
               content={<h2>Modal Content 2</h2>}
               buttonText="Open"
@@ -40,6 +52,7 @@ function App() {
           <div>
             <h2>Modal Content 1</h2>
             <ModalTrigger
+              id="textModal4"
               escapeClose={false}
               buttonText="Open"
               content={<h2>Modal Content 2</h2>}
